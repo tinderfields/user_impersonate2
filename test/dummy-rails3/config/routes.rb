@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   root :to => "home#index"
 
-  mount UserImpersonate::Engine => "/impersonate", as: "impersonate_engine"
+  mount TinderfieldsUserImpersonate::Engine => "/impersonate", as: "impersonate_engine"
 end

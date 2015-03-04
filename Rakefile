@@ -18,7 +18,7 @@ puts "Testing against Rails #{TestUtils.rails_version} with dummy application in
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'UserImpersonate'
+  rdoc.title    = 'TinderfieldsUserImpersonate'
   rdoc.options << '--line-numbers'
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')

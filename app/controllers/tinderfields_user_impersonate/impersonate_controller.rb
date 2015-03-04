@@ -1,6 +1,6 @@
 require_dependency "user_impersonate/application_controller"
 
-module UserImpersonate
+module TinderfieldsUserImpersonate
   class ImpersonateController < ApplicationController
     before_filter :authenticate_the_user, except: ["destroy"]
     before_filter :current_user_must_be_staff!, except: ["destroy"]
@@ -25,7 +25,9 @@ module UserImpersonate
     # Perform the user impersonate action
     # GET /impersonate/user/123
     def create
+      puts 'create'
       @user = find_user(params[:user_id])
+      puts @user
       impersonate(@user)
       redirect_on_impersonate(@user)
     end
@@ -68,6 +70,7 @@ module UserImpersonate
     # current_staff changes from a staff user to
     # +new_user+; current user stored in +session[:staff_user_id]+
     def impersonate(new_user)
+      puts 'impersonate'
       session[:staff_user_id] = current_staff.id #
       sign_in_user new_user
     end
@@ -75,13 +78,21 @@ module UserImpersonate
     # revert the +current_staff+ back to the staff user
     # stored in +session[:staff_user_id]+
     def revert_impersonate
+      puts 'revert_impersonate'
+      puts current_staff_user
+      puts current_user
+      puts current_linguist
+      puts session[:staff_user_id]
       return unless current_staff_user
       sign_in_user current_staff_user
       session[:staff_user_id] = nil
     end
 
     def sign_in_user(user)
+      puts 'sign_in_user'
       method = config_or_default :sign_in_user_method, "sign_in"
+      puts method
+      puts user
       self.send(method.to_sym, user)
     end
 
@@ -90,13 +101,13 @@ module UserImpersonate
       self.send(method.to_sym)
     end
 
-    # Helper to load a User, using all the UserImpersonate config options
+    # Helper to load a User, using all the TinderfieldsUserImpersonate config options
     def find_user(id)
       user_class.send(user_finder_method, id)
     end
 
     # Similar to user.staff?
-    # Using all the UserImpersonate config options
+    # Using all the TinderfieldsUserImpersonate config options
     def user_is_staff?(user)
       current_staff.respond_to?(user_is_staff_method.to_sym) &&
         current_staff.send(user_is_staff_method.to_sym)
@@ -107,6 +118,8 @@ module UserImpersonate
     end
 
     def user_class_name
+      puts 'user_class_name'
+      puts config_or_default :user_class, "User"
       config_or_default :user_class, "User"
     end
 
@@ -143,8 +156,8 @@ module UserImpersonate
     # gets overridden config value for engine, else returns default
     def config_or_default(attribute, default)
       attribute = attribute.to_sym
-      if UserImpersonate::Engine.config.respond_to?(attribute)
-        UserImpersonate::Engine.config.send(attribute)
+      if TinderfieldsUserImpersonate::Engine.config.respond_to?(attribute)
+        TinderfieldsUserImpersonate::Engine.config.send(attribute)
       else
         default
       end

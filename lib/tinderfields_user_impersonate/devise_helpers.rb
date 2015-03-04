@@ -1,5 +1,5 @@
 # TODO store staff user via Warden
-module UserImpersonate
+module TinderfieldsUserImpersonate
   module DeviseHelpers
     module Helpers
       # current_user changes from a staff user to
@@ -21,8 +21,8 @@ module UserImpersonate
     module UrlHelpers
       def current_staff_user
         return unless session[:staff_user_id]
-        user_finder_method = config_value(UserImpersonate::Engine.config, :user_finder, 'find').to_sym
-        user_class_name = config_value(UserImpersonate::Engine.config, :user_class, 'User')
+        user_finder_method = config_value(TinderfieldsUserImpersonate::Engine.config, :user_finder, 'find').to_sym
+        user_class_name = config_value(TinderfieldsUserImpersonate::Engine.config, :user_class, 'User')
         user_class = user_class_name.constantize
         @staff_user ||= user_class.send(user_finder_method, session[:staff_user_id])
       end

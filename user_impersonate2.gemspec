@@ -1,12 +1,12 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "user_impersonate/version"
+require "tinderfields_user_impersonate/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name = 'user_impersonate2'
-  s.version     = UserImpersonate::VERSION
+  s.name = 'tinderfields_user_impersonate'
+  s.version     = TinderfieldsUserImpersonate::VERSION
   s.authors = ['Richard Cook', 'Dr Nic Williams', 'Many people at Engine Yard']
   s.email = 'rcook@rcook.org'
   s.homepage = 'https://github.com/rcook/user_impersonate2'

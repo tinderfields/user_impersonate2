@@ -58,7 +58,7 @@ rails generate user_impersonate
 This adds the following line to your `config/routes.rb` file:
 
 ```ruby
-mount UserImpersonate::Engine => "/impersonate", as: "impersonate_engine"
+mount TinderfieldsUserImpersonate::Engine => "/impersonate", as: "impersonate_engine"
 ```
 
 It also generates a default initializer under `config/initializers/user_impersonate2.rb`.
@@ -171,7 +171,7 @@ created by the `user_impersonate` generator described above.
 
 ```ruby
 # config/initializers/user_impersonate.rb
-module UserImpersonate
+module TinderfieldsUserImpersonate
   class Engine < Rails::Engine
     config.redirect_on_impersonate = '/'
     config.redirect_on_revert = '/impersonate'
@@ -190,7 +190,7 @@ You can change this default behaviour in the initializer `config/initializers/us
 
 ```ruby
 # config/initializers/user_impersonate.rb
-module UserImpersonate
+module TinderfieldsUserImpersonate
   class Engine < Rails::Engine
     config.user_class = 'User'
     config.user_finder = 'find'
@@ -208,7 +208,7 @@ can be overridden using the following initializer settings:
 
 ```ruby
 # config/initializers/user_impersonate.rb
-module UserImpersonate
+module TinderfieldsUserImpersonate
   class Engine < Rails::Engine
     # For Active Admin "AdminUser" model, use 'authenticate_admin_user!'
     config.authenticate_user_method = 'authenticate_admin_user!'
@@ -252,7 +252,7 @@ Use the following initializer:
 
 ```ruby
 # config/initializers/user_impersonate.rb
-module UserImpersonate
+module TinderfieldsUserImpersonate
   class Engine < Rails::Engine
     config.user_class = 'Spree::User'
     config.user_finder = 'find'

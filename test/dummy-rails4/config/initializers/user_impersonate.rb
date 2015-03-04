@@ -1,4 +1,4 @@
-module UserImpersonate
+module TinderfieldsUserImpersonate
   class Engine < Rails::Engine
     # Devise user model
     config.user_class = 'User'

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserImpersonate::ImpersonateControllerTest < ActionController::TestCase
+class TinderfieldsUserImpersonate::ImpersonateControllerTest < ActionController::TestCase
   test 'index should require authentication' do
     get :index, :use_route => 'user_impersonate'
     assert_redirected_to 'http://test.host/users/sign_in'
@@ -66,7 +66,7 @@ class UserImpersonate::ImpersonateControllerTest < ActionController::TestCase
   # If config.staff_finder is not specified, default of "find" should be used.
   # Similarly, config.staff_class should default to "User".
   test 'staff_finder not specified' do
-    options = UserImpersonate::Engine.config.class.class_variable_get('@@options')
+    options = TinderfieldsUserImpersonate::Engine.config.class.class_variable_get('@@options')
     options.delete(:staff_class)
     options.delete(:staff_finder)
     user = User.create!(:email => 'test@example.com', :password => 'password')
@@ -79,7 +79,7 @@ class UserImpersonate::ImpersonateControllerTest < ActionController::TestCase
   # If config.staff_finder is nil, default of "find" should be used.
   # Similarly, config.staff_class should default to "User".
   test 'staff_finder nil' do
-    options = UserImpersonate::Engine.config.class.class_variable_get('@@options')
+    options = TinderfieldsUserImpersonate::Engine.config.class.class_variable_get('@@options')
     options[:staff_class] = nil
     options[:staff_finder] = nil
     user = User.create!(:email => 'test@example.com', :password => 'password')
@@ -91,7 +91,7 @@ class UserImpersonate::ImpersonateControllerTest < ActionController::TestCase
   # https://github.com/rcook/user_impersonate2/issues/3
   # If config.staff_finder is specified, the given method should be called.
   test 'staff_finder other' do
-    options = UserImpersonate::Engine.config.class.class_variable_get('@@options')
+    options = TinderfieldsUserImpersonate::Engine.config.class.class_variable_get('@@options')
     options[:staff_finder] = :other
     user = User.create!(:email => 'test@example.com', :password => 'password')
     session[:staff_user_id] = user.id
@@ -103,7 +103,7 @@ class UserImpersonate::ImpersonateControllerTest < ActionController::TestCase
   # https://github.com/rcook/user_impersonate2/issues/3
   # If config.staff_class is specified, the given model should be used.
   test 'staff_class other' do
-    options = UserImpersonate::Engine.config.class.class_variable_get('@@options')
+    options = TinderfieldsUserImpersonate::Engine.config.class.class_variable_get('@@options')
     options[:staff_class] = 'SomeUser'
     user = User.create!(:email => 'test@example.com', :password => 'password')
     session[:staff_user_id] = user.id
